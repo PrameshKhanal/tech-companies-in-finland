@@ -32,11 +32,25 @@ jobs:
             --max-concurrency 5
             --exclude 'linkedin\.com'
             --exclude 'glassdoor\.com'
+            --format markdown
             './README.md'
+          output: ./lychee/out.md
           fail: false
 
+      - name: Check output file
+        id: check_output
+        run: |
+          if [ -f ./lychee/out.md ] && [ -s ./lychee/out.md ]; then
+            echo "has_content=true" >> $GITHUB_OUTPUT
+            echo "--- Lychee output ---"
+            cat ./lychee/out.md
+          else
+            echo "has_content=false" >> $GITHUB_OUTPUT
+            echo "No broken links found or output file is empty."
+          fi
+
       - name: Create issue if broken links found
-        if: steps.lychee.outputs.exit_code != 0
+        if: steps.lychee.outputs.exit_code != 0 && steps.check_output.outputs.has_content == 'true'
         uses: peter-evans/create-issue-from-file@v5
         with:
           title: "🔗 Broken links detected (monthly check)"
