@@ -105,4 +105,4 @@ This repository is community-maintained, and your contributions (issues or pull 
 ---
 
 
-[Back to top ⬆️](https://github.com/PrameshKhanal/tech-companies-in-finland/blob/main/README.md#list-of-tech-companies-in-finland)
+[Back to top ⬆️](#-list-of-tech-companies-in-finland)
