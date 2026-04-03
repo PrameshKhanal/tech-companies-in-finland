@@ -1,0 +1,46 @@
+name: Check Links
+
+on:
+  # Run on the 1st of every month at 09:00 UTC (11:00 Helsinki time)
+  schedule:
+    - cron: "0 9 1 * *"
+
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check links with Lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --accept 200,204,301,302,403,429
+            --exclude-mail
+            --timeout 30
+            --max-retries 3
+            --max-concurrency 5
+            --exclude 'linkedin\.com'
+            --exclude 'glassdoor\.com'
+            './README.md'
+          fail: false
+
+      - name: Create issue if broken links found
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "🔗 Broken links detected (monthly check)"
+          content-filepath: ./lychee/out.md
+          labels: |
+            broken-link
+            automated
