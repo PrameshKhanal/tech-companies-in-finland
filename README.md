@@ -1,6 +1,8 @@
 # 💻 List of Tech Companies in Finland
 A list of Finnish companies that are working on [Software Development](https://www.geeksforgeeks.org/software-engineering/what-is-software-development/). This list is regularly updated, so feel free to contribute by creating a [pull request](https://github.com/PrameshKhanal/tech-companies-in-finland/compare) or [reporting any issues](https://github.com/PrameshKhanal/tech-companies-in-finland/issues/new) you encounter.
 
+📊 **Looking for the bigger picture?** Check the latest [Finland employment statistics](finland-employment-data.md): unemployment, employment and tech-sector figures, compared with the rest of Europe.
+
 ---
 
 ## 📋 About the List

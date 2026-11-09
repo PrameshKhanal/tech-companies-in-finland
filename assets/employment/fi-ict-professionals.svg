@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="Finland: employed ICT professionals (thousand people)" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+<rect x="0.5" y="0.5" width="759" height="339" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+<text x="54" y="28" font-size="15" font-weight="600" fill="#1f2328">Finland: employed ICT professionals (thousand people)</text>
+<line x1="54" x2="736" y1="300.0" y2="300.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="304.0" font-size="11" text-anchor="end" fill="#57606a">0</text>
+<line x1="54" x2="736" y1="222.0" y2="222.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="226.0" font-size="11" text-anchor="end" fill="#57606a">50</text>
+<line x1="54" x2="736" y1="144.0" y2="144.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="148.0" font-size="11" text-anchor="end" fill="#57606a">100</text>
+<line x1="54" x2="736" y1="66.0" y2="66.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="70.0" font-size="11" text-anchor="end" fill="#57606a">150</text>
+<rect x="61.9" y="179.9" width="36.7" height="120.1" rx="3" fill="#2563eb"/>
+<text x="80.2" y="173.9" font-size="11" text-anchor="middle" fill="#1f2328">77</text>
+<text x="80.2" y="320" font-size="11" text-anchor="middle" fill="#57606a">2013</text>
+<rect x="114.3" y="183.0" width="36.7" height="117.0" rx="3" fill="#2563eb"/>
+<text x="132.7" y="177.0" font-size="11" text-anchor="middle" fill="#1f2328">75</text>
+<text x="132.7" y="320" font-size="11" text-anchor="middle" fill="#57606a">2014</text>
+<rect x="166.8" y="183.0" width="36.7" height="117.0" rx="3" fill="#2563eb"/>
+<text x="185.2" y="177.0" font-size="11" text-anchor="middle" fill="#1f2328">75</text>
+<text x="185.2" y="320" font-size="11" text-anchor="middle" fill="#57606a">2015</text>
+<rect x="219.3" y="176.8" width="36.7" height="123.2" rx="3" fill="#2563eb"/>
+<text x="237.6" y="170.8" font-size="11" text-anchor="middle" fill="#1f2328">79</text>
+<text x="237.6" y="320" font-size="11" text-anchor="middle" fill="#57606a">2016</text>
+<rect x="271.7" y="169.0" width="36.7" height="131.0" rx="3" fill="#2563eb"/>
+<text x="290.1" y="163.0" font-size="11" text-anchor="middle" fill="#1f2328">84</text>
+<text x="290.1" y="320" font-size="11" text-anchor="middle" fill="#57606a">2017</text>
+<rect x="324.2" y="162.7" width="36.7" height="137.3" rx="3" fill="#2563eb"/>
+<text x="342.5" y="156.7" font-size="11" text-anchor="middle" fill="#1f2328">88</text>
+<text x="342.5" y="320" font-size="11" text-anchor="middle" fill="#57606a">2018</text>
+<rect x="376.6" y="162.7" width="36.7" height="137.3" rx="3" fill="#2563eb"/>
+<text x="395.0" y="156.7" font-size="11" text-anchor="middle" fill="#1f2328">88</text>
+<text x="395.0" y="320" font-size="11" text-anchor="middle" fill="#57606a">2019</text>
+<rect x="429.1" y="140.9" width="36.7" height="159.1" rx="3" fill="#2563eb"/>
+<text x="447.5" y="134.9" font-size="11" text-anchor="middle" fill="#1f2328">102</text>
+<text x="447.5" y="320" font-size="11" text-anchor="middle" fill="#57606a">2020</text>
+<rect x="481.6" y="139.3" width="36.7" height="160.7" rx="3" fill="#2563eb"/>
+<text x="499.9" y="133.3" font-size="11" text-anchor="middle" fill="#1f2328">103</text>
+<text x="499.9" y="320" font-size="11" text-anchor="middle" fill="#57606a">2021</text>
+<rect x="534.0" y="130.0" width="36.7" height="170.0" rx="3" fill="#2563eb"/>
+<text x="552.4" y="124.0" font-size="11" text-anchor="middle" fill="#1f2328">109</text>
+<text x="552.4" y="320" font-size="11" text-anchor="middle" fill="#57606a">2022</text>
+<rect x="586.5" y="126.8" width="36.7" height="173.2" rx="3" fill="#2563eb"/>
+<text x="604.8" y="120.8" font-size="11" text-anchor="middle" fill="#1f2328">111</text>
+<text x="604.8" y="320" font-size="11" text-anchor="middle" fill="#57606a">2023</text>
+<rect x="638.9" y="120.6" width="36.7" height="179.4" rx="3" fill="#2563eb"/>
+<text x="657.3" y="114.6" font-size="11" text-anchor="middle" fill="#1f2328">115</text>
+<text x="657.3" y="320" font-size="11" text-anchor="middle" fill="#57606a">2024</text>
+<rect x="691.4" y="125.3" width="36.7" height="174.7" rx="3" fill="#2563eb"/>
+<text x="709.8" y="119.3" font-size="11" text-anchor="middle" fill="#1f2328">112</text>
+<text x="709.8" y="320" font-size="11" text-anchor="middle" fill="#57606a">2025</text>
+</svg>

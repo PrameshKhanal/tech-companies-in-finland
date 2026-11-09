@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" width="760" height="340" role="img" aria-label="Finland: employed in information &amp; communication (thousand people)" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+<rect x="0.5" y="0.5" width="759" height="339" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+<text x="54" y="28" font-size="15" font-weight="600" fill="#1f2328">Finland: employed in information &amp; communication (thousand people)</text>
+<line x1="54" x2="736" y1="300.0" y2="300.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="304.0" font-size="11" text-anchor="end" fill="#57606a">80</text>
+<line x1="54" x2="736" y1="241.5" y2="241.5" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="245.5" font-size="11" text-anchor="end" fill="#57606a">100</text>
+<line x1="54" x2="736" y1="183.0" y2="183.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="187.0" font-size="11" text-anchor="end" fill="#57606a">120</text>
+<line x1="54" x2="736" y1="124.5" y2="124.5" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="128.5" font-size="11" text-anchor="end" fill="#57606a">140</text>
+<line x1="54" x2="736" y1="66.0" y2="66.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="46" y="70.0" font-size="11" text-anchor="end" fill="#57606a">160</text>
+<text x="54.0" y="320" font-size="11" text-anchor="middle" fill="#57606a">2015</text>
+<text x="172.6" y="320" font-size="11" text-anchor="middle" fill="#57606a">2017</text>
+<text x="291.2" y="320" font-size="11" text-anchor="middle" fill="#57606a">2019</text>
+<text x="409.8" y="320" font-size="11" text-anchor="middle" fill="#57606a">2021</text>
+<text x="528.4" y="320" font-size="11" text-anchor="middle" fill="#57606a">2023</text>
+<text x="647.0" y="320" font-size="11" text-anchor="middle" fill="#57606a">2025</text>
+<polyline points="54.0,235.7 68.8,232.7 83.7,221.0 98.5,253.2 113.3,247.3 128.1,253.2 143.0,256.1 157.8,250.3 172.6,238.6 187.4,235.7 202.3,250.3 217.1,232.7 231.9,229.8 246.7,221.0 261.6,206.4 276.4,206.4 291.2,206.4 306.0,191.8 320.9,185.9 335.7,185.9 350.5,185.9 365.3,177.1 380.2,171.3 395.0,174.2 409.8,177.1 424.7,171.3 439.5,162.5 454.3,145.0 469.1,180.1 484.0,121.6 498.8,127.4 513.6,133.3 528.4,115.7 543.3,150.8 558.1,107.0 572.9,133.3 587.7,115.7 602.6,124.5 617.4,121.6 632.2,121.6 647.0,112.8 661.9,142.0 676.7,150.8 691.5,156.7 706.3,162.5 721.2,162.5 736.0,147.9" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="736.0" cy="147.9" r="3.5" fill="#2563eb"/>
+<text x="730.0" y="138.9" font-size="12" font-weight="600" text-anchor="end" fill="#2563eb">132</text>
+</svg>
