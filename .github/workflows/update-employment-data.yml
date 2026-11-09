@@ -1,0 +1,47 @@
+name: Update Employment Data
+
+on:
+  # Check every Monday at 07:30 UTC. New data is only committed when a release
+  # from Statistics Finland (~20th-25th of the month) or Eurostat (~start of
+  # the month) actually changes the numbers, so most runs do nothing.
+  schedule:
+    - cron: "30 7 * * 1"
+
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-employment-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate the employment data page
+        run: python scripts/update_employment_data.py
+
+      - name: Commit and push if the data changed
+        run: |
+          git add -A
+          # Ignore the lines that change on every run (today's date), so only real data changes count.
+          if [ -z "$(git diff --cached -I'Last updated' -I'Referenced:' --stat)" ]; then
+            echo "No new data. Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update employment data (automated)"
+          git push
