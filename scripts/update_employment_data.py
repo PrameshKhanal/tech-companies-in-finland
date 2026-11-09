@@ -15,6 +15,8 @@ import json
 import math
 import os
 import re
+import time
+import urllib.error
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,14 +46,30 @@ BLUE, ORANGE, GREEN, PURPLE ="#2563eb", "#d97706", "#059669", "#7c3aed"
 
 
 # --------------------------------------------------------------------------- data access
-def http(url, body=None):
+_cache = {}
+
+
+def http(url, body=None, tries=5):
+    """GET (or POST a JSON body) and return parsed JSON. Retries when the server says 'slow down'."""
+    key = (url, json.dumps(body, sort_keys=True))
+    if key in _cache:
+        return _cache[key]
     data = None if body is None else json.dumps(body).encode()
     headers = dict(UA)
     if body is not None:
         headers["Content-Type"] = "application/json"
-    req = urllib.request.Request(url, data=data, headers=headers)
-    with urllib.request.urlopen(req, timeout=90) as resp:
-        return json.load(resp)
+    for attempt in range(1, tries + 1):
+        try:
+            req = urllib.request.Request(url, data=data, headers=headers)
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                _cache[key] = json.load(resp)
+                return _cache[key]
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 500, 502, 503, 504) or attempt == tries:
+                raise
+            wait = int(exc.headers.get("Retry-After") or 0) or 5 * attempt
+            print(f"HTTP {exc.code} from {url.split('?')[0]}; waiting {wait}s (attempt {attempt}/{tries})")
+            time.sleep(wait)
 
 
 def jsonstat(js):
@@ -147,6 +165,19 @@ def find_publication(month_text):
         print("Could not locate the release page:", exc)
     print("Release page for", month_text, "not found; linking the statistics page instead.")
     return fallback
+
+
+def official_key_selections(url, month_text):
+    """The 'Key selections' bullets of the release page, or None if they can't be read for this month."""
+    try:
+        page = urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=60).read().decode("utf-8", "replace")
+        block = re.search(r"Key selections</h2>\s*<div><ul>(.*?)</ul>", page, re.S)
+        items = [html.unescape(re.sub(r"<[^>]+>", "", t)).strip()
+                 for t in re.findall(r"<li>(.*?)</li>", block.group(1), re.S)] if block else []
+        return items if items and month_text in items[0] else None
+    except Exception as exc:
+        print("Could not read the release's key selections:", exc)
+        return None
 
 
 def prev_year(period):  # "2026-09" / "2026M09" / "2026Q3" / "2025" -> one year earlier
@@ -286,6 +317,27 @@ def main():
     sf_latest = max(m for m, v in sf["employed"].items() if v is not None)
     sf_prev = prev_year(sf_latest)
     sf_label = month_label(sf_latest.replace("M", "-"))
+    sf_prev_label = month_label(sf_prev.replace("M", "-"))
+
+    # ---- Statistics Finland: men and women (table 135y), latest month vs a year earlier
+    meta_y = {v["code"]: v for v in http(f"{PX}/135y.px")["variables"]}
+
+    def code_of(var, text):
+        return meta_y[var]["values"][meta_y[var]["valueTexts"].index(text)]
+
+    sex_var, age_var = "sukupuoli_9_20180101", "ikaryhma_19_20190101"
+    sex_codes = {"men": code_of(sex_var, "Males"), "women": code_of(sex_var, "Females")}
+    age_code = code_of(age_var, "15 - 74")
+    cont_codes = {"employed": code_of("contentscode", "Employed, 1000 persons"),
+                  "unemployed": code_of("contentscode", "Unemployed, 1000 persons")}
+    ids_y, data_y = px_get("135y", {"timeperiod_m": [sf_prev, sf_latest], sex_var: list(sex_codes.values()),
+                                    age_var: [age_code], "contentscode": list(cont_codes.values())})
+
+    def gender_change(sex, status):
+        def at(m):
+            want = {"timeperiod_m": m, sex_var: sex_codes[sex], age_var: age_code, "contentscode": cont_codes[status]}
+            return data_y[tuple(want[d] for d in ids_y)]
+        return at(sf_latest) - at(sf_prev)
 
     # ---- Statistics Finland: tech view
     quarters = [q for q in px_values("137l", "timeperiod_q") if int(q[:4]) >= SINCE_YEAR]
@@ -387,6 +439,38 @@ def main():
     a("")
     a(f"Source: Official Statistics of Finland (OSF), [Labour force survey]({pub_url}), Statistics Finland. "
       "Ages 15–74 unless stated.")
+    a("")
+
+    def persons(thousands):
+        return f"{int(round(thousands * 1000)):,}"
+
+    def compare(change, noun):  # change in thousand persons
+        n = persons(abs(change))
+        if round(change * 1000) == 0:
+            return f"**no change** in {noun}"
+        return f"**{n}** {'more' if change > 0 else 'fewer'} {noun}"
+
+    month_name = sf_label.split()[0]
+    official = official_key_selections(pub_url, sf_label)
+    if official:  # the release's own "Key selections", with the numbers in bold
+        bullets = [re.sub(r"(\d{1,3}(?:,\d{3})+|\d+\.\d+\s+per\s+cent)", r"**\1**", t) for t in official]
+        print("Key figures: official wording from the release page")
+    else:  # fallback: calculated from the (rounded) database tables
+        print("Key figures: calculated from the database tables (release text not available)")
+        bullets = [
+            f"In {sf_label}, the number of employed persons was **{persons(sf['employed'][sf_latest])}** "
+            f"and that of unemployed persons **{persons(sf['unemployed'][sf_latest])}**.",
+            f"There were {compare(gender_change('men', 'employed'), 'employed men')} and "
+            f"{compare(gender_change('women', 'employed'), 'employed women')} than in {sf_prev_label}.",
+            f"There were {compare(gender_change('men', 'unemployed'), 'unemployed men')} and "
+            f"{compare(gender_change('women', 'unemployed'), 'unemployed women')} than in {sf_prev_label}.",
+            f"The trend of the employment rate among persons aged 20 to 64 was **{num(sf['emp_rate_t'][sf_latest])} per cent** in {month_name}.",
+            f"The trend of the unemployment rate among persons aged 15 to 74 was **{num(sf['unemp_rate_t'][sf_latest])} per cent** in {month_name}.",
+        ]
+    a("**Key figures**")
+    a("")
+    for b in bullets:
+        a(f"- {b}")
     a("")
     a("| Indicator | Latest (not adjusted) | Trend | Year ago | Change vs. year ago |")
     a("| --- | ---: | ---: | ---: | ---: |")

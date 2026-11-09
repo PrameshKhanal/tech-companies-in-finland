@@ -12,6 +12,14 @@ A quick look at how the Finnish labour market is doing, how it compares with the
 
 Source: Official Statistics of Finland (OSF), [Labour force survey](https://stat.fi/en/publication/cmfp99vvraagp08urorj45p22), Statistics Finland. Ages 15–74 unless stated.
 
+**Key figures**
+
+- In September 2026, the number of employed persons was **2,578,000** and that of unemployed persons **298,000**.
+- There were **59,000** fewer employed men and **48,000** more employed women than in September 2025.
+- There were **17,000** more unemployed men and **22,000** more unemployed women than in September 2025.
+- The trend of the employment rate among persons aged 20 to 64 was **75.8 per cent** in September.
+- The trend of the unemployment rate among persons aged 15 to 74 was **10.5 per cent** in September.
+
 | Indicator | Latest (not adjusted) | Trend | Year ago | Change vs. year ago |
 | --- | ---: | ---: | ---: | ---: |
 | Employed (thousand people) | 2,578 | 2,590 | 2,589 | -11 |
