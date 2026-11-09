@@ -426,7 +426,7 @@ def main():
     a("[⬅ Back to the list of tech companies](README.md)")
     a("")
     a(f"> 📅 **Last updated:** {today} · Statistics Finland data up to **{sf_label}** · "
-      f"Eurostat data up to **{month_label(es_latest)}** (as published {es_updated})")
+      f"Eurostat data up to **{month_label(es_latest)}**")
     a("")
     a("A quick look at how the Finnish labour market is doing, how it compares with the rest of Europe, "
       "and what the numbers say about the information and communication (ICT) sector. "
@@ -437,12 +437,21 @@ def main():
     a("")
     a(f"## 📊 Latest figures: {sf_label}")
     a("")
-    a(f"Source: Official Statistics of Finland (OSF), [Labour force survey]({pub_url}), Statistics Finland. "
-      "Ages 15–74 unless stated.")
-    a("")
-
     def persons(thousands):
         return f"{int(round(thousands * 1000)):,}"
+
+    a("#### Number of unemployed people")
+    a("")
+    a(f"## ~{persons(sf['unemployed'][sf_latest])}")
+    a("")
+    a(f"*{sf_label} · estimate from a sample survey*")
+    a("")
+    a("#### Europe Ranking")
+    a("")
+    a(f"## {fi_rank} of {len(ranked)}")
+    a("")
+    a(f"*{ordinal_highest(fi_rank).capitalize()} unemployment rate in the EU · {num(es['FI'][es_latest])}% in {month_label(es_latest)}*")
+    a("")
 
     def compare(change, noun):  # change in thousand persons
         n = persons(abs(change))
@@ -484,7 +493,7 @@ def main():
           f"{num(sf[k].get(sf_prev), d)} | {delta(sf[k][sf_latest], sf[k].get(sf_prev), d, unit)} |")
     a("")
     a("*Trend* is adjusted for seasonal and random variation, so it is the best series for judging the "
-      "direction of the labour market. The latest trend values are preliminary and may be revised. "
+      "direction of the labour market. The latest trend values are preliminary and may be revised. Ages 15–74 unless stated. "
       "The monthly figures come from a sample survey and carry a margin of error of tens of thousands of people for "
       "the totals, so small changes between months are not meaningful.")
     a("")
@@ -592,9 +601,8 @@ def main():
     a("- **Eurostat** (all other countries, EU and euro area), [monthly unemployment (une_rt_m)](https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table?lang=en) "
       "and its [methodology notes](https://ec.europa.eu/eurostat/cache/metadata/en/une_rt_m_esms.htm).")
     a("- The numbers come from labour force surveys and are estimates. Totals are rounded and may differ slightly between tables.")
-    a("- To refresh this page, run `python scripts/update_employment_data.py` (Python 3, no extra packages).")
     a("")
-    a("### How to cite the Finnish data")
+    a("### Finnish data citation")
     a("")
     a(f"> Official Statistics of Finland (OSF): Labour force survey [online publication]. Reference period: {ref_period}. "
       f"ISSN={ISSN}. Helsinki: Statistics Finland [Referenced: {ref_text}]. Access method: {pub_url}")

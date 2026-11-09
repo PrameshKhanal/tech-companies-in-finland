@@ -10,7 +10,17 @@ A quick look at how the Finnish labour market is doing, how it compares with the
 
 ## 📊 Latest figures: September 2026
 
-Source: Official Statistics of Finland (OSF), [Labour force survey](https://stat.fi/en/publication/cmfp99vvraagp08urorj45p22), Statistics Finland. Ages 15–74 unless stated.
+#### Number of unemployed people
+
+## ~298,000
+
+*September 2026 · estimate from a sample survey*
+
+#### Europe Ranking
+
+## 1 of 27
+
+*The highest unemployment rate in the EU · 10.9% in September 2026*
 
 **Key figures**
 
@@ -28,7 +38,7 @@ Source: Official Statistics of Finland (OSF), [Labour force survey](https://stat
 | Unemployment rate (%) | 10.4 | 10.5 | 9.1 | +1.3 pp |
 | Youth unemployment rate, ages 15–24 (%) | 22.0 | 23.5 | 16.6 | +5.4 pp |
 
-*Trend* is adjusted for seasonal and random variation, so it is the best series for judging the direction of the labour market. The latest trend values are preliminary and may be revised. The monthly figures come from a sample survey and carry a margin of error of tens of thousands of people for the totals, so small changes between months are not meaningful.
+*Trend* is adjusted for seasonal and random variation, so it is the best series for judging the direction of the labour market. The latest trend values are preliminary and may be revised. Ages 15–74 unless stated. The monthly figures come from a sample survey and carry a margin of error of tens of thousands of people for the totals, so small changes between months are not meaningful.
 
 ![Finland unemployment rate (trend)](assets/employment/fi-unemployment-rate.svg)
 
